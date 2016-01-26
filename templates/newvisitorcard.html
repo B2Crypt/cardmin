@@ -1,0 +1,31 @@
+{% from "_formhelpers.html" import render_field %}
+
+{%block body%}
+<form action="/newvisitorcard/" method="POST" enctype="multipart/form-data">
+    <table width="60" border="0">
+        <tr>
+            <td>{{render_field(form.kortnr)}}</td>
+        </tr>
+        <tr>
+            <td>{{render_field(form.serienummer)}}</td>
+        </tr>
+        <tr>
+            <td>{{render_field(form.kode)}}</td>
+        </tr>
+        <tr>
+            <td>{{render_field(form.type)}}</td>
+        </tr>
+        <tr>
+            <td>{{render_field(form.adgang)}}</td>
+        </tr>
+        <tr>
+            <td>{{render_field(form.kommentar)}}</td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Lagre" /></td>
+        </tr>
+    </table>
+
+
+</form>
+{%endblock%}

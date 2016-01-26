@@ -1,0 +1,168 @@
+<link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+<meta http-equiv="refresh" content="180; url=https://trondheim.582.im" />
+
+		{% from "_formhelpers.html" import render_field %}
+
+
+{%block body %}
+<head>
+	<script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+		<script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+		<script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="{{url_for('static', filename='/js/bootstrap.min.js')}}"></script>
+		</head>
+		{% if myip == "91.198.201.97" %}
+		<a  href='/login/'><img src="{{url_for('static',filename='images/logo.jpg')}}" height="50" border="0"></a>
+		{% else %}
+		<img src="{{url_for('static',filename='images/logo.jpg')}}" height="50" border="0">
+		{%endif%}
+<center>
+	<p><strong><font size='12'><b>Velkommen til Jernbaneverket</b></font> </strong>
+	<br>
+	<b>Lånekort har tilgang til bygget mellom 07:00 – 17:00 mandag – fredag. <br>Ved gjenglemt eller mistet lånekort skal din kontaktperson varsles.
+	<br>Adgangskort skal alltid bæres synlig.
+	 <br /><br />
+        <!--
+    <script type="text/javascript">
+        {%if CardAlreadyOut=="1"%}
+            window.alert("Kortet er allerede utlånt!")
+        {%endif%}
+        {%if invalidcard =="1"%}
+            window.alert("Du har valgt ett ugyldig kortnummer. Kortnummeret står oppgitt på kortet som du har fått fra resepsjonen!")
+        {%endif%}
+    </script>
+            -->
+	<div>
+				
+	  <!-- Nav tabs -->
+	  <table with="700" border="0">
+	  <tr>
+		<td>
+		<ul class="nav nav-tabs" role="tablist">
+		<li role="presentation"><a href="#intern" aria-controls="intern" role="tab" data-toggle="tab"><b>Ansatt i Jernbaneverket</b></a></li>
+		<li role="presentation"><a href="#idkort" aria-controls="idkort" role="tab" data-toggle="tab"><b>Ansatt med ID-kort</b></a></li>
+		<li role="presentation"><a href="#ekstern" aria-controls="ekstern" role="tab" data-toggle="tab"><b>Eksternt besøkende</b></a></li>
+		<li role="presentation"><a href="#opm" aria-controls="opm" role="tab" data-toggle="tab"><b>OPM</b></a></li>
+		<li role="presentation"><a href="#service" aria-controls="service" role="tab" data-toggle="tab"><b>Service</b></a></li>
+	  </ul>
+	  </td>
+	  </tr>
+	  </table>
+
+	  <!-- Tab panes -->
+	  <div class="tab-content">
+		<div role="tabpanel" class="tab-pane active" id="intern">
+
+		<form action='/' method="POST">
+			<table width="650">
+			<tr><td><b>Kortnummer</b></td>
+            <td><select name='kortnr'>
+                    <option value="invalid"><b>Velg kortnummer fra listen</b></option> 
+			{% for ik in ikort %}
+			<option value="{{ik[1]}}">{{ik[1]}}</option>
+			{%endfor%}
+			</select>
+                </td></tr>
+			<tr><td>{{ render_field(form.firstname) }}</td></tr>
+			<tr><td>{{ render_field(form.lastname) }}</td></tr>
+			<tr><td>{{ render_field(form.contact) }}</td></tr>
+			<tr><td>{{ render_field(form.phonenumber) }}</td></tr>
+			<tr><td>{{ render_field(form.company) }}</td></tr>	
+			<tr><td></td>
+			<td align="left">
+			<input type="hidden" name="regtype" value="intern">
+			<input type=submit value="G&aring; videre"></td></tr>
+			</table>
+		</form>	
+		</div>
+		
+		<div role="tabpanel" class="tab-pane" id="idkort">
+		
+		<form action='/' method="POST">
+			<table width="650">
+			<tr><td><b>Kortnummer</b></td>
+                <td><select name='kortnr'>
+                        <option value="invalid">Velg kortnummer fra listen</option>
+			{% for id in idkort %}
+			<option value="{{id[1]}}">{{id[1]}}</option>
+			{%endfor%}
+			</select></td></tr>
+			<tr><td>{{ render_field(form.rnummer) }}</td></tr>	
+			<tr><td></td><td align="left">
+			<input type="hidden" name="regtype" value="idkort">
+			<input type=submit value="G&aring; videre"></td></tr>
+			</table>
+		</form>	
+
+		</div>
+		<div role="tabpanel" class="tab-pane" id="ekstern">
+		<form action='/' method="POST">
+			<table width="650">
+			<tr><td><b>Kortnummer</b></td>
+                <td><select name='kortnr'>
+                        <option value="invalid">Velg kortnummer fra listen</option>
+			{% for eks in ekort %}
+			<option value="{{eks[1]}}">{{eks[1]}}</option>
+			{%endfor%}
+			</select></td></tr>
+			<tr><td>{{ render_field(form.firstname) }}</td></tr>
+			<tr><td>{{ render_field(form.lastname) }}</td></tr>
+			<tr><td>{{ render_field(form.contact) }}</td></tr>
+			<tr><td>{{ render_field(form.phonenumber) }}</td></tr>
+			<tr><td>{{ render_field(form.company) }}</td></tr>	
+
+			<tr><td></td><td align="left"><input type="hidden" name="regtype" value="ekstern">
+<input type=submit value="G&aring; videre"></td></tr>
+			</table>
+		</form>	
+		</div>
+		<div role="tabpanel" class="tab-pane" id="opm">
+		<form action='/' method="POST">
+			<table width="650">
+			<tr><td><b>Kortnummer</b></td>
+                <td><select name='kortnr'>
+                        <option value="invalid">Velg kortnummer fra listen</option>
+			{% for opm in opmkort %}
+			<option value="{{opm[1]}}">{{opm[1]}}</option>
+			{%endfor%}
+			</select></td></tr>
+			<tr><td>{{ render_field(form.firstname) }}</td></tr>
+			<tr><td>{{ render_field(form.lastname) }}</td></tr>
+			<tr><td>{{ render_field(form.contact) }}</td></tr>
+			<tr><td>{{ render_field(form.phonenumber) }}</td></tr>
+			<tr><td>{{ render_field(form.company) }}</td></tr>	
+			<tr><td></td><td align="left">			<input type="hidden" name="regtype" value="opm">
+<input type=submit value="G&aring; videre"></td></tr>
+			</table>
+		</form>	
+		</div>
+		<div role="tabpanel" class="tab-pane" id="service">
+		<form action='/' method="POST">
+			<table width="650">
+			<tr><td><b>Kortnummer</b></td>
+                <td><select name='kortnr'>
+                        <option value="invalid">Velg kortnummer fra listen</option>
+			{% for s in skort %}
+			<option value="{{s[1]}}">{{s[1]}}</option>
+			{%endfor%}
+			</select></td></tr>
+			<tr><td>{{ render_field(form.firstname) }}</td></tr>
+			<tr><td>{{ render_field(form.lastname) }}</td></tr>
+			<tr><td>{{ render_field(form.contact) }}</td></tr>
+			<tr><td>{{ render_field(form.phonenumber) }}</td></tr>
+			<tr><td>{{ render_field(form.company) }}</td></tr>	
+			<tr><td></td><td align="left">			<input type="hidden" name="regtype" value="service">
+<input type=submit value="G&aring; videre"></td></tr>
+			</table>
+		</form>	
+		
+		</div>
+		  </div>
+
+	</div>
+</center>
+{% endblock %}
+
+

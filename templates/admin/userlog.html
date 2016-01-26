@@ -1,0 +1,23 @@
+
+<a href="/admin/userlog/truncate/">Empty log</a>
+<table width="50%">
+    <tr>
+        <td>Date</td>
+        <td>Time</td>
+        <td>User</td>
+        <td>Site</td>
+        <td>Description</td>
+        <td>IP</td>
+    </tr>
+    {%for row in data%}
+    <tr>
+        <td>{{row[1]}}</td>
+        <td>{{row[2]}}</td>
+        <td>{{row[3]}}</td>
+        <td>{{row[4]}}</td>
+        <td>{{row[7]}}</td>
+        <td>{{row[5]}}</td>
+    </tr>
+    {%endfor%}
+</table>
+

@@ -1,0 +1,30 @@
+{%block body%}
+<table width="100%" border="0">
+	<tr>
+		<td>Kortnr</td>
+		<td>Status</td>
+		<td>Kode</td>
+		<td>Korttype</td>
+		<td>Handling</td>
+	</tr>
+	{%for row in data%}
+	<tr>
+		<td>{{row[1]}}</td>
+		<td>
+		{%if row[10] == "0" %}
+		Inne
+		{%endif%}
+		{%if row[10] == "1" %}
+		Utl&aring;nt
+		{%endif%}
+		</td>
+		<td>{{row[6]}}</td>
+		<td>{{row[2]}}</td>
+		<td>
+        {%if session.guestcard_edit == '1' %}<a href='/editguestcard?kortnr={{row[1]}}'>Endre</a>{%endif%}
+        - {%if session.guestcard_delete == '1' %}<a href='/deletevisitorcard?kortnr={{row[1]}}'>Delete</a>{%endif%}
+        </td>
+        
+	</tr>
+	{%endfor%}
+{%endblock%}

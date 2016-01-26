@@ -1,0 +1,50 @@
+<link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+
+{% from "_formhelpers.html" import render_field %}
+
+<center>
+<form action="/executeguest/" method="POST" enctype="multipart/form-data">
+
+<table border='0' class='content'>
+{% for row in rows %}
+	<tr>
+		<td>Kortnr:</td><td>{{row[12]}} (<a href='/endrekortnummer?kortnr={{row[12]}}&ssid={{row[16]}}'>Bytt kort</a>)</td>
+	</tr>
+	{% if session.developer == '1' %}
+	<tr>
+		<td>SSID:</td><td>{{row[16]}}</td>
+	</tr>
+	{%endif%}
+	<tr>
+		<td>Sist endret:</td><td>{{row[19]}}</td>
+	</tr>	
+		<tr>
+		<td>Kode:</td><td>{{kode}}</td>
+	</tr>	
+	<tr>
+		<td>Fornavn:</td><td><input type='text' name='navn' value='{{row[1]}}'></td>
+	</tr>
+	<tr>	
+		<td>Etternavn:</td><td><input type='text' name='etternavn' value='{{row[2]}}'></td>
+	</tr>
+	<tr>
+		<td>Firma:</td><td><input type='text' name='firma' value='{{row[3]}}'></td>
+	</tr>
+	<tr>
+		<td>Kontaktperson:</td><td><input type='text' name='kontakt' value='{{row[4]}}'></td>
+	</tr>
+	<tr>
+	<td>Telefonnummer:</td><td><input type='text' name='telefon' value='{{row[6]}}'></td>
+	</tr>
+	<tr>
+		<td>Merknadsfelt</td><td><textarea name='merknad'>{{row[15]}}</textarea></td>
+	</tr>
+	<tr>
+		<td colspan="2"><input type="hidden" name="ssid" value="{{row[16]}}"><input type="submit" name="save" value="Lagre"></td>
+	</tr>
+{%endfor%}
+</table>
+</form>
+
+</center>
+

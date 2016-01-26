@@ -1,0 +1,91 @@
+{%block body%}
+<form action="/admin/edituser-exec/" method="post">
+    <center>
+        <table>
+            {%for user in data%}
+            <tr>
+                <td>Navn: </td>
+                <td><input type="text" name="name" value="{{user[1]}}"/></td>
+            </tr>
+            <tr>
+                <td>Brukernavn: </td><td><input type="text" name="login" value="{{user[3]}}" /></td>
+            </tr>
+            <tr>
+                <td>Brukergruppe: </td>
+                <td><select name="access">
+                    <option value="{{user[6]}}">{{user[6]}}</option>
+                    <option value="user">Bruker</option>
+                    <option value="admin">Admin</option>
+                    <option value="opmuser">OPMBruker</option>
+                    <option value="opmadmin">OPMAdmin</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Status: </td>
+                <td><select name="canLogin">
+                    <option value="{{user[50]}}">{{user[50]}}</option>
+                    <option value="1">&Aring;pen</option>
+                    <option value="0">Stengt</option>
+                    </select></td>
+            </tr>
+            <tr>
+                <td>Utvikler</td>
+                <td>
+                    <select name="developer">
+                        <option value="{{user[17]}}">{{user[17]}}</option>
+                        <option value="1">Ja</option>
+                        <option value="0">Nei</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Endre gjesteprofil</td>
+                <td>
+                    <select name="guest_edit">
+                        <option value="{{user[43]}}">{{user[43]}}</option>
+                        <option value="1">Ja</option>
+                        <option value="0">Nei</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Endre bes&oslash;kskort</td>
+                <td>
+
+                    <select name="guestcard_edit">
+                        <option value="{{user[27]}}">{{user[27]}}</option>
+                        <option value="1">Ja</option>
+                        <option value="0">Nei</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Se kode</td>
+                <td>
+                    <select name="show_code">
+                        <option value="{{user[24]}}">{{user[24]}}</option>
+                        <option value="1">Ja</option>
+                        <option value="0">Nei</option>
+                    </select>
+                    
+                </td>
+            <tr>
+                <td>Endre bruker</td>
+                <td>
+                    <select name="user_edit">
+                        <option value="{{user[21]}}">{{user[21]}}</option>
+                        <option value="1">Ja</option>
+                        <option value="0">Nei</option>
+                    </select>
+                </td>
+
+                <tr>
+                    <td><input type="hidden" name="userid" value="{{user[0]}}" /><input type="submit" value="Lagre" /></td>
+            </tr>
+            {%endfor%}
+        </table>
+    </center>
+
+</form>
+{%endblock%}

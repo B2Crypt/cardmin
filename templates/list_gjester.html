@@ -1,0 +1,48 @@
+<link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+<meta http-equiv="refresh" content="30" />
+<style type='text/css'>
+    tr:nth-of-type(odd) {
+        background-color: #E6E8ED;
+    }
+</style>
+<table width="100%" border="0" valign="center" class='table'>
+
+    <tr>
+        <td><b>Kortnr</td>
+        <td><b>Kort type</td>
+        <td><b>Fornavn</td>
+        <td><b>Etternavn</td>
+        <td><b>Firma-/Avdeling</td>
+        <td><b>Kontaktperson i JBV</td>
+        <td><b>Telefon</td>
+        <td><b>Dato</td>
+        <td><b>Handling</td>
+    </tr>
+    {% for row in rows %}
+    <tr>
+
+        <td>
+            {%if row[12] == "test" and session.developer !='1' %}{{row12}} {%else%}<a href='/leverkort?k={{row[12]}}&ssid={{row[16]}}'>{{row[12]}}</a>
+        </td>{%endif%} <!-- If the card is test and the user not are a developer-->
+        <td>{{row[17]}}</td>
+        {%if session.guest_edit == '1' %}
+        <td><a href="/endregjest?ssid={{row[16]}}&kortnr={{row[12]}}">{{row[1]}}</a></td>
+        {%else%}
+        <td>{{row[1]}}</td>{%endif%}
+        {%if session.guest_edit == '1' %}
+        <td><a href="/endregjest?ssid={{row[16]}}&kortnr={{row[12]}}">{{row[2]}}</a></td>
+        {%else%}
+        <td>{{row[2]}}</td>{%endif%}
+        <td>{{row[3]}}</td>
+        <td>{{row[4]}}</td>
+        <td>{{row[6]}}</td>
+        <td>
+            {%if row[7] < date %} <font color="##FF0000"><b>{{row[7]}} - {{row[8]}}</b></font> {%else%} {{row[7]}} - {{row[8]}} {%endif%}
+
+        </td>
+        <td>{%if row[12] == "test" and session.developer !='1' %} {%else%} <a href='/leverkort?k={{row[12]}}&ssid={{row[16]}}'>Lever kort</a></td>{%endif%} <!-- If the card is test and the user not are a developer-->
+
+    </tr>
+    {% endfor %}
+</table>
+

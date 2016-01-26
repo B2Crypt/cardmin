@@ -1,0 +1,35 @@
+<link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+<table width="100%" border="1">
+	<tr>
+		<td>Kortnr</td>
+		<td>Navn</td>
+		<td>Kontakt i JBV</td>
+		<td>Firma</td>
+		<td>Dato utl&aring;nt</td>
+		<td>Levert dato</td>
+		<td>Telefonnummer</td>
+		<td>Kortstatus</td>
+		<td>Innlevert av</td>
+	</tr>
+	{%for row in rows %}
+	<tr>
+		<td>{{row[12]}}</td>
+		<td>{{row[1]}} {{row[2]}}</td>
+		<td>{{row[4]}}</td>
+		<td>{{row[3]}}</td>
+		<td>{{row[7]}}</td>
+		<td>{{row[9]}}</td>
+		<td>{{row[6]}}</td>
+		<td>
+		{% if row[11] == "0" %}
+		Innlevert
+		{%endif%}
+		{% if row[11] == "1" %}
+		Utl&aring;nt
+		{%endif%}
+		
+		</td>
+		<td>{{row[19]}}</td>
+	</tr>
+	{%endfor%}
+	</table>

@@ -1,0 +1,12 @@
+{%block body%}
+<table>
+    {%for user in data%}
+    <tr>
+        <td><a href="/admin/EditUser?id={{user[0]}}">{{user[1]}}</a></td> <!--name-->
+        <td>{{user[3]}}</td> <!--username-->
+        <td>{{user[6]}}</td> <!--access-->
+        <td>{{user[7]}}</td> <!--active-->
+    </tr>
+    {%endfor%}
+</table>
+{%endblock%}

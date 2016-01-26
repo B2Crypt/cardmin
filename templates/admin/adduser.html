@@ -1,0 +1,31 @@
+{% from "_formhelpers.html" import render_field %}
+
+{% block body %}
+<center>
+<form action="/admin/AddUser/" method="POST">
+<table width='100' bordeR='0' class='form-content'>
+<tr>
+	<td>{{render_field(form.name)}}</td>
+</tr>
+<tr>
+	<td>{{render_field(form.username)}}</td>
+</tr>
+<tr>
+	<td>{{render_field(form.email)}}</td>
+</tr>
+<tr>
+	<td>{{render_field(form.password)}}</td>
+</tr>
+<tr>
+	<td>{{render_field(form.confirm)}}</td>
+</tr>
+<tr>
+	<td>{{render_field(form.access)}}</td>
+</tr>
+<tr>
+	<td><input type="submit" value="Lagre"></td>
+</tr>
+</table>
+</form>
+</center>
+{% endblock %}

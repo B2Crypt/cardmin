@@ -1,0 +1,18 @@
+{% block body %}
+
+<table width="100">
+	<tr>
+		<td>Korttype</td>
+		<td>Kortnummer</td>
+		<td>Kode</td>
+	</tr>
+	{%for row in rows%}
+	<tr>
+		<td>{{row[1]}}</td>
+		<td>{{row[0]}}</td>
+		<td>{{row[2]}}</td>
+	</tr>
+	{%endfor%}
+</table>
+
+{%endblock%}

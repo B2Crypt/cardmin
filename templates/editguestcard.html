@@ -1,0 +1,65 @@
+<link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+
+{%block body%}
+<center>
+<form action='/executeeditguestcard/' method='POST' enctype="multipart/form-data">
+<table width='50' border='0'>
+	{%for row in rows%}
+	<tr>
+			<td>Kortnr:</td><td><input type='text' name='kortnr' value='{{row[1]}}' name='kortnr' ></td>
+	</tr>
+	<tr>
+			<td>Type:</td><td><input type='text' value='{{row[2]}}' name='type' class="form-control"></td>
+	</tr>
+	<tr	>	<td>Serienr:</td><td><input type='text' value='{{row[12]}}' name='serienr' class="form-control"></td>
+	</tr>
+	<tr	>	<td>Kode:</td><td><input type='text' value='{{row[6]}}' name='kode' class="form-control"></td>
+	</tr>
+	<tr	>	<td>Adgang:</td><td><select name='adgang' class="form-control" id='adgang'>
+			<option value='{{row[9]}}'>{{row[9]}}</option>
+          <option value='ingen'> ingen</option>
+          <option value='A'>Fast ansatt</option>
+          <option value='M'>Midlertidig ansatt</option>
+          <option value='Arkiv'>Arkiv</option>
+          <option value='OPM'>OPM/GSMR</option>
+          <option value='TSST'>TSST</option>
+          <option value='I'>Intern</option>
+          <option value='IU'>Utvidet innleid</option>
+          <option value='F'>Felles</option>
+          <option value='S'>Servicekort</option>
+          <option value='R'>Renhold</option>
+        </select></td>
+			
+	</tr>
+	<tr>
+		<td>Vis i utl&aring;nsliste:</td>
+        <td><select name='showList'>
+            <option value='{{row[20]}}'>{{row[20]}}</option>
+            <option value='1'>JA</option>
+            <option value='0'>NEI</option>
+            </select>
+        </td>
+	</tr>
+	<tr>
+		<td>Kortet er sperret:</td>
+        <td><select name='sperret'>
+            <option value='{{row[11]}}'>{{row[11]}}</option>
+            <option value='1'>JA</option>
+            <option value='0'>NEI</option>
+            </select>
+        </td>
+	</tr>
+	
+	<tr>
+		<td><input type='hidden' name='id' value='{{row[0]}}'></td>
+	</tr>
+    <tr><td><a href="/ForceCard?kortnr={{row[1]}}">Tving innlevering</a></td></tr>
+
+	{%endfor%}
+	<tr><td><input type='submit' value='Lagre'></td></tr>
+</table>
+</form>
+</center>
+
+
+{%endblock%}
